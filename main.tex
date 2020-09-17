@@ -1,0 +1,537 @@
+\documentclass[preprint2]{aastex63}
+
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage{subfigure}
+\usepackage[nointegrals]{wasysym}
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+
+
+\newcommand{\bEll}{{\boldsymbol{\ell}}}
+\newcommand{\bL}{{\boldsymbol{L}}}
+\newcommand{\bth}{\boldsymbol{\theta}}
+\newcommand{\cF}{\mathcal{F}}
+
+
+\newcommand{\al}{\alpha} 
+\newcommand{\bt}{\beta}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\stt}{\sigma_\mathrm{T}}
+\newcommand{\me}{m_\mathrm{e}}
+\newcommand{\nume}{n_\mathrm{e}}
+\newcommand{\rmn}{\mathrm}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\tht}{\bm{\theta}}
+
+\newcommand{\maa}[1]{\textcolor{blue}{(MA: #1)}}
+\newcommand{\gp}[1]{\textcolor{red}{(GP: #1)}}
+
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\ba}{\begin{eqnarray}}
+\newcommand{\ea}{\end{eqnarray}}
+\newcommand{\nn}{\nonumber}
+\newcommand{\barr}{\begin{array}}
+\newcommand{\earr}{\end{array}}
+\newcommand{\eqdef}{\stackrel{\rm def}{=}}
+\newcommand{\bigoh}{\mathcal{O}}
+
+%\newcommand{\meanmass}{1.11_{-0.29}^{+0.32}}
+% rounded to
+\newcommand{\meanmass}{1.7\pm0.4}
+\newcommand{\meanz}{1.08}
+\newcommand{\nclusters}{677~}
+\newcommand{\tnclusters}{1676~}
+\newcommand{\curlpte}{0.05}
+\newcommand{\curlsigma}{1.9}
+\newcommand{\fitpte}{0.93}
+\newcommand{\fitsigma}{4.2}
+\newcommand{\nullsigma}{4.9} 
+
+
+\def\ellb{{\boldsymbol{ \ell}}}
+\def\x{{\bf x}}
+\def\r{{\bf r}}
+\def\y{{\bf y}}
+\def\n{{\bf n}}
+\def\hE{{\hat {\mathcal E}}}
+\def\hT{{\hat T}}
+\def\hv{{\hat v}}
+\def\hr{{\bf \hat r}}
+\def\hdelta{{\hat \delta}}
+\def\tT{{\tilde T}}
+\def\hphi{{\hat\phi}}
+\def\tP{{\widetilde P}}
+\def\bP{{\bar P}}
+\def\tB{{\widetilde B}}
+\def\bB{{\bar B}}
+
+\newcommand{\Dl}{D_\mathrm{l}}
+\newcommand{\Dls}{D_\mathrm{ls}}
+\newcommand{\kappaoneh}{\hat\kappa_\mathrm{1h}(\theta)}
+\newcommand{\kappatwoh}{\hat\kappa_\mathrm{2h}(\theta)}
+\newcommand{\madcows}{MaDCoWS}
+\newcommand{\Planck}{{\it Planck}}
+\newcommand{\Msun}{\mathrm{M}_\odot}
+\newcommand{\observable}{\lambda}
+
+\usepackage{aas_macros}
+
+\begin{document}
+
+\title{The Atacama Cosmology Telescope: \\
+Weighing distant clusters with the most ancient light}
+ \shorttitle{Weighing distant clusters with the most ancient light}
+  \shortauthors{Madhavacheril, Sif\'{o}n, Battaglia et al.}
+
+\correspondingauthor{Mathew~S.~Madhavacheril}
+\email{mmadhavacheril@perimeterinstitute.ca}
+
+\correspondingauthor{Crist\'{o}bal~Sif\'{o}n}
+\email{cristobal.sifon@pucv.cl}
+
+
+\author{Mathew~S.~Madhavacheril}
+\affiliation{Centre for the Universe, Perimeter Institute, Waterloo, ON N2L 2Y5, Canada}
+
+\author{Crist\'{o}bal~Sif\'{o}n}
+\affiliation{Instituto de F\'isica, Pontificia Universidad Cat\'olica de Valpara\'iso, Casilla 4059, Valpara\'iso, Chile}
+
+\author{Nicholas~Battaglia}
+\affiliation{Department of Astronomy, Cornell University, Ithaca, NY 14853 USA}
+
+\author{Simone~Aiola}
+\affiliation{Center for Computational Astrophysics, Flatiron Institute, 162 5th Avenue, New York, NY, USA 10010}
+
+\author{Stefania~Amodeo}
+\affiliation{Department of Astronomy, Cornell University, Ithaca, NY 14853 USA}
+
+\author{Jason~E.~Austermann}
+\affiliation{NIST Quantum Devices Group, 325 Broadway Mailcode 817.03, Boulder, CO, USA 80305}
+
+\author{James~A.~Beall}
+\affiliation{NIST Quantum Devices Group, 325 Broadway Mailcode 817.03, Boulder, CO, USA 80305}
+
+\author{Daniel~T.~Becker}
+\affiliation{NIST Quantum Devices Group, 325 Broadway Mailcode 817.03, Boulder, CO, USA 80305}
+
+\author{J.~Richard~Bond}
+\affiliation{Canadian Institute for Theoretical Astrophysics, University of Toronto, 60 St. George Street, Toronto, ON, Canada, M5S 3H8}
+
+\author{Erminia~Calabrese}
+\affiliation{School of Physics and Astronomy, Cardiff University, The Parade, Cardiff, CF24 3AA, UK}
+
+\author{Steve~K.~Choi}
+\affiliation{Department of Physics, Cornell University, Ithaca, NY 14853 USA}
+\affiliation{Department of Astronomy, Cornell University, Ithaca, NY 14853 USA}
+
+\author{Edward~V.~Denison}
+\affiliation{NIST Quantum Devices Group, 325 Broadway Mailcode 817.03, Boulder, CO, USA 80305}
+
+\author{Mark~J.~Devlin}
+\affiliation{Department of Physics and Astronomy, University of Pennsylvania, 209 South 33rd Street, Philadelphia, PA 19104}
+
+\author{Simon~R.~Dicker}
+\affiliation{Department of Physics and Astronomy, University of Pennsylvania, 209 South 33rd Street, Philadelphia, PA 19104}
+
+\author{Shannon~M.~Duff}
+\affiliation{NIST Quantum Devices Group, 325 Broadway Mailcode 817.03, Boulder, CO, USA 80305}
+
+\author{Adriaan~J.~Duivenvoorden}
+\affiliation{Joseph Henry Laboratories of Physics, Jadwin Hall, Princeton University, Princeton, NJ 08544, USA}
+
+\author{Jo~Dunkley}
+\affiliation{Department of Astrophysical Sciences, Princeton University, 4 Ivy Lane, Princeton, NJ, USA 08544}
+\affiliation{Joseph Henry Laboratories of Physics, Jadwin Hall, Princeton University, Princeton, NJ 08544, USA}
+
+\author{Rolando~D\"unner}
+\affiliation{Instituto de Astrof\'isica and Centro de Astro-Ingenier\'ia, Facultad de F\'isica, Pontificia Universidad Cat\'olica de Chile, Av.  Vicu\~na Mackenna 4860, 7820436 Macul, Santiago, Chile}
+
+\author{Simone~Ferraro}
+\affiliation{Physics Division, Lawrence Berkeley National Laboratory, Berkeley, CA 94720, USA}
+
+\author{Patricio~A.~Gallardo}
+\affiliation{Department of Physics, Cornell University, Ithaca, NY 14853 USA}
+
+\author{Yilun~Guan}
+\affiliation{Department of Physics and Astronomy, University of Pittsburgh, Pittsburgh, PA, USA 15260}
+
+\author{Dongwon~Han}
+\affiliation{Physics and Astronomy Department, Stony Brook University, Stony Brook, NY 11794, USA}
+
+\author{J.~Colin~Hill}
+\affiliation{Department of Physics, Columbia University, 550 West 120th Street, New York, NY, USA 10027}
+\affiliation{Center for Computational Astrophysics, Flatiron Institute, 162 5th Avenue, New York, NY, USA 10010}
+
+\author{Gene~C.~Hilton}
+\affiliation{NIST Quantum Devices Group, 325 Broadway Mailcode 817.03, Boulder, CO, USA 80305}
+
+\author{Matt~Hilton}
+\affiliation{Astrophysics Research Centre, University of KwaZulu-Natal, Westville Campus, Durban 4041, South Africa}
+\affiliation{School of Mathematics, Statistics \& Computer Science, University of KwaZulu-Natal, Westville Campus, Durban 4041, South Africa}
+
+\author{Johannes~Hubmayr}
+\affiliation{NIST Quantum Devices Group, 325 Broadway Mailcode 817.03, Boulder, CO, USA 80305}
+
+\author{Kevin~M.~Huffenberger}
+\affiliation{Department of Physics, Florida State University, Tallahassee, FL 32306, USA}
+
+\author{John~P.~Hughes}
+\affiliation{Department of Physics and Astronomy, Rutgers University, 136 Frelinghuysen Road, Piscataway, NJ 08854-8019 USA}
+
+\author{Brian~J.~Koopman}
+\affiliation{Department of Physics, Yale University, New Haven, CT 06520, USA}
+
+\author{Arthur~Kosowsky}
+\affiliation{Department of Physics and Astronomy, University of Pittsburgh, Pittsburgh, PA, USA 15260}
+
+\author{Jeff~Van~Lanen}
+\affiliation{NIST Quantum Devices Group, 325 Broadway Mailcode 817.03, Boulder, CO, USA 80305}
+
+\author{Eunseong~Lee}
+\affiliation{Jodrell Bank Centre for Astrophysics, School of Physics and Astronomy, University of Manchester, Manchester, UK}
+
+\author{Thibaut~Louis}
+\affiliation{Universit\'e Paris-Saclay, CNRS/IN2P3, IJCLab, 91405 Orsay, France}
+
+\author{Amanda~MacInnis}
+\affiliation{Physics and Astronomy Department, Stony Brook University, Stony Brook, NY 11794, USA}
+
+\author{Jeffrey~McMahon}
+\affiliation{Kavli Institute for Cosmological Physics, University of Chicago, 5640 S. Ellis Ave., Chicago, IL 60637, USA}
+\affiliation{Department of Astronomy and Astrophysics, University of Chicago, 5640 S. Ellis Ave., Chicago, IL 60637, USA}
+\affiliation{Department of Physics, University of Chicago, Chicago, IL 60637, USA}
+\affiliation{Enrico Fermi Institute, University of Chicago, Chicago, IL 60637, USA}
+
+\author{Kavilan~Moodley}
+\affiliation{Astrophysics Research Centre, University of KwaZulu-Natal, Westville Campus, Durban 4041, South Africa}
+\affiliation{School of Mathematics, Statistics \& Computer Science, University of KwaZulu-Natal, Westville Campus, Durban 4041, South Africa}
+
+\author{Sigurd~Naess}
+\affiliation{Center for Computational Astrophysics, Flatiron Institute, 162 5th Avenue, New York, NY, USA 10010}
+
+\author{Toshiya~Namikawa}
+\affiliation{Center for Theoretical Cosmology, DAMTP, University of Cambridge, CB3 0WA, UK}
+
+\author{Federico~Nati}
+\affiliation{Department of Physics, University of Milano-Bicocca, Piazza della Scienza 3, 20126 Milano, Italy}
+
+\author{Laura~Newburgh}
+\affiliation{Department of Physics, Yale University, New Haven, CT 06520, USA}
+
+\author{Michael~D.~Niemack}
+\affiliation{Department of Physics, Cornell University, Ithaca, NY 14853 USA}
+\affiliation{Department of Astronomy, Cornell University, Ithaca, NY 14853 USA}
+
+\author{Lyman~A.~Page}
+\affiliation{Joseph Henry Laboratories of Physics, Jadwin Hall, Princeton University, Princeton, NJ 08544, USA}
+
+\author{Bruce~Partridge}
+\affiliation{Department of Physics and Astronomy, Haverford College,Haverford, PA, USA 19041}
+
+\author{Frank~J.~Qu}
+\affiliation{Center for Theoretical Cosmology, DAMTP, University of Cambridge, CB3 0WA, UK}
+
+\author{Naomi~C.~Robertson}
+\affiliation{Institute of Astronomy, Madingley Road, Cambridge CB3 0HA, UK}
+\affiliation{Kavli Institute for Cosmology, University of Cambridge, Madingley Road, Cambridge CB3 OHA, UK}
+
+\author{Maria~Salatino}
+\affiliation{Physics Department, Stanford University, 382 via Pueblo, Stanford, CA 94305, USA}
+\affiliation{Kavli Institute for Particle Astrophysics and Cosmology, 452 Lomita Mall, Stanford, CA 94305-4085, USA}
+
+\author{Emmanuel~Schaan}
+\affiliation{Physics Division, Lawrence Berkeley National Laboratory, Berkeley, CA 94720, USA}
+
+\author{Alessandro~Schillaci}
+\affiliation{Department of Physics, California Institute of Technology, Pasadena, CA 91125, USA}
+
+\author{Benjamin~L.~Schmitt}
+\affiliation{Harvard-Smithsonian Center for Astrophysics, Harvard University, 60 Garden St, Cambridge, MA 02138, United States}
+
+\author{Neelima~Sehgal}
+\affiliation{Physics and Astronomy Department, Stony Brook University, Stony Brook, NY 11794, USA}
+
+\author{Blake~D.~Sherwin}
+\affiliation{Center for Theoretical Cosmology, DAMTP, University of Cambridge, CB3 0WA, UK}
+\affiliation{Kavli Institute for Cosmology, University of Cambridge, Madingley Road, Cambridge CB3 OHA, UK}
+
+\author{Sara~M.~Simon}
+\affiliation{Fermi National Accelerator Laboratory, Batavia, IL 60510, USA}
+
+\author{David~N.~Spergel}
+\affiliation{Center for Computational Astrophysics, Flatiron Institute, 162 5th Avenue, New York, NY, USA 10010}
+\affiliation{Department of Astrophysical Sciences, Princeton University, 4 Ivy Lane, Princeton, NJ, USA 08544}
+
+\author{Suzanne~Staggs}
+\affiliation{Joseph Henry Laboratories of Physics, Jadwin Hall, Princeton University, Princeton, NJ 08544, USA}
+
+\author{Emilie~R.~Storer}
+\affiliation{Joseph Henry Laboratories of Physics, Jadwin Hall, Princeton University, Princeton, NJ 08544, USA}
+
+\author{Joel~N.~Ullom}
+\affiliation{NIST Quantum Devices Group, 325 Broadway Mailcode 817.03, Boulder, CO, USA 80305}
+
+\author{Leila~R.~Vale}
+\affiliation{NIST Quantum Devices Group, 325 Broadway Mailcode 817.03, Boulder, CO, USA 80305}
+
+\author{Alexander~van~Engelen}
+\affiliation{School of Earth and Space Exploration and Department of Physics, Arizona State University, Tempe, AZ 85287}
+
+\author{Eve~M.~Vavagiakis}
+\affiliation{Department of Physics, Cornell University, Ithaca, NY 14853 USA}
+
+\author{Edward~J.~Wollack}
+\affiliation{NASA/Goddard Space Flight Center, Greenbelt, MD 20771, USA}
+
+\author{Zhilei~Xu}
+\affiliation{Department of Physics and Astronomy, University of Pennsylvania, 209 South 33rd Street, Philadelphia, PA 19104}
+
+\begin{abstract}
+    
+We use gravitational lensing of the cosmic microwave background (CMB) to measure the mass of the
+most distant blindly-selected sample of galaxy clusters on which a lensing measurement has been performed to date.  In CMB data from the the Atacama Cosmology Telescope (ACT) and
+the {\it Planck} satellite, we detect the stacked lensing effect from \nclusters near-infrared-selected galaxy clusters from the Massive
+and Distant Clusters of WISE Survey (MaDCoWS), which have a mean redshift of $ \langle z \rangle = \meanz$.
+There are no current optical weak lensing measurements of clusters that match the distance and average mass of this sample. 
+We detect the lensing signal with a significance of $\fitsigma \sigma$.
+We model the signal with a halo model framework to  find the mean mass of the population from which these clusters are drawn. Assuming that the clusters
+follow Navarro-Frenk-White density profiles, we infer a mean mass of $\langle M_{500c}\rangle = \left(\meanmass\right)\times10^{14}\,\Msun$.  We consider systematic uncertainties from cluster redshift errors, centering errors, and the shape of the NFW profile.  These are all smaller than 30\% of our reported uncertainty. This work highlights the potential of CMB lensing to enable cosmological constraints from the abundance of distant clusters populating ever larger volumes of the observable Universe, beyond the capabilities of optical weak lensing measurements. \\ \\ \\ \\
+
+\end{abstract}
+
+
+\section{Introduction}
+
+Most of the mass in the Universe is thought to consist of `dark matter' that does not interact with electromagnetic radiation other than through the gravitational force. Distortions in background light sources due to the gravitational influence of massive clusters of galaxies can be used to produce maps of the total matter distribution. This technique has served not only as evidence for the existence of dark matter~\citep{TrimbleReview,MasseyReview}, but also as a method for inferring the total mass of galaxy clusters themselves~\citep[e.g.,][]{HoekstraReview}. Such mass measurements are critical for the program of using the abundance of clusters to infer cosmological parameters like the dark energy equation of state or the mass scale of neutrinos~\citep[e.g.,][]{AEM2011,madhavacheril17}. One key aspect of this program is our ability to constrain the abundance of clusters to high redshifts, directly probing the growth of structure through cosmic time~\citep{Voit2005}.
+
+Sensitive large-area optical/near-infrared surveys are now allowing measurements of the mean mass of clusters up to $z\sim1$ \citep{chiu19,murata19} through the lensing effects induced on background galaxies. However, as the distance of the clusters increases, the number of background galaxies that are useful for weak-lensing measurements decreases rapidly. Measurements of this ``galaxy weak lensing'' effect at large distances are therefore only possible at present through deep targeted observations  with the Hubble Space Telescope \citep{jee11,schrabback18}, with which observations currently exist for only some dozens of rich, 
+massive clusters at redshifts of $z>0.8$.
+A valuable complementary probe is emerging as cosmic microwave background (CMB) measurements are becoming sensitive enough to allow measurements of weak lensing by galaxy clusters in maps of the temperature and polarization of the CMB \cite[e.g.,][]{Mat2015,Baxter2015,PlnkSZCos2015,GP2017,2019ApJ...872..170R,2019MNRAS.489..401Z}. The high source redshift of the CMB allows weak lensing measurements to higher redshifts than galaxy lensing. Consequently, measurements of CMB lensing by clusters are anticipated to provide more stringent constraints on the masses of high-redshift clusters than enabled by future optical surveys~\citep[e.g.][]{madhavacheril17}.
+
+We provide a mass estimate using gravitational lensing of the CMB for a blindly-selected sample of galaxy clusters whose average mass has not been previously determined using galaxy lensing, which is additionally the highest redshift, $\langle z\rangle=\meanz$, where a detection of gravitational lensing by galaxy clusters has been reported for a blindly-selected sample to date. As opposed to targeted measurements of the most massive clusters, our work allows for inference of the average mass of a representative cluster sample.
+
+\begin{figure}[t]
+    \centering
+\includegraphics[width=0.9\linewidth]{zhist.pdf}
+    \includegraphics[width=0.9\linewidth]{lamhist.pdf}
+    \caption{Distributions for cluster redshift (top), and for a measure of the number of galaxies in a cluster, richness (bottom) for the \madcows\ WISE-PanSTARRS galaxy cluster sample used in this work. The blue histograms correspond to the \nclusters clusters that remain after applying the richness cut ($\lambda>20$) and ACT mask, while the red histograms correspond to the full sample of \tnclusters clusters.}
+    \label{fig:nz}
+\end{figure}
+
+
+\section{Data}
+
+We use a combination of CMB data from the ground-based Atacama Cosmology Telescope (ACT) and the \Planck\ satellite at the location of galaxy clusters selected from the Massive and Distant Clusters of WISE Survey \citep[\madcows,][]{gonzalez19}.
+The \madcows\ clusters were identified as galaxy overdensities in near-infrared imaging (at 3.4~$\mu$m and 4.6~$\mu$m) from the WISE all-sky survey \citep{WISE2010}, and a large number of them were followed up with the \textit{Spitzer} Space Telescope (at 3.6~$\mu$m and 4.5~$\mu$m).
+At declinations $>-30^\circ$, the addition of optical data ($grizy$ bands) from the Panoramic Survey Telescope and Rapid Response System \citep[Pan-STARRS,][]{panstarrs} allowed reliable photometric redshift estimation and subsequent cluster richness measurements.
+As a first attempt at a mass proxy, \citet{gonzalez19} define the richness, $\observable$, to be the overdensity of red-sequence galaxies (identified using both PanSTARRS and \textit{Spitzer} data) brighter than 15 $\mu$Jy in the \textit{Spitzer} 4.5~$\mu$m band and within 1 Mpc of the brightest cluster galaxy.
+Photometric redshifts were estimated from the \textit{Spitzer} 3.6~$\mu$m and 4.5~$\mu$m bands, aided with the PanSTARRS $i$-band to remove low-redshift galaxies, with an estimated scatter $\sigma_z/(1+z)=0.04$ and no significant bias (but with an outlier fraction potentially of order 5\%)\footnote{These statistics are based on a comparison of photometric and spectroscopic redshifts for 38 clusters for which the latter is available.}.
+We discuss the impact of photometric redshift uncertainties below.
+We use this subset of the \madcows\ ``WISE-PanSTARRS'' sample with available photometric redshifts, imposing an additional $\observable>20$ cut to reduce contamination by false detections in the \madcows\ catalog, for a total of \nclusters clusters after masking point sources and other artifacts in the ACT maps (which is also limited to declinations \ $\leq20^\circ$). 
+We show the richness and redshift distributions of these clusters in Fig.\ \ref{fig:nz}. The mean redshift of the sample is $\langle z\rangle=\meanz$ with 
+16\% and 84\% percentile range of 0.93--1.26.
+
+
+To reconstruct the lensing signal, we use co-added maps of ACT and \Planck\ CMB temperature data prepared separately at 98 GHz and 150 GHz and described in \cite{2007.07290}. The co-added maps include night-time data collected during the years 2008 -- 2018 using the MBAC~\citep{Swetz2011}, ACTPol~\citep{thornton/2016} and AdvACT~\citep{Henderson2016} receivers. The \Planck\ maps used in the co-added maps are the PR2 (2015) CMB temperature maps at 100 GHz and 143 GHz. We also use the \Planck\ 2018 SMICA tSZ-deprojected maps~\citep{Planck2018compsep} as an additional input to the lensing reconstruction (see Appendix A). This is done in order to remove the bias from the thermal Sunyaev-Zeldovich (tSZ) effect due to inverse Compton scattering of CMB photons off ionized electrons in hot gas in massive clusters~\citep{1802.08230}.  Deprojection of the tSZ is possible because the frequency dependence of the spectral distortion due to the tSZ effect is well understood.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.95\columnwidth]{fig2.pdf}
+    \caption{The stacked CMB lensing convergence mass map from the sample of \nclusters MaDCoWS clusters with $\langle z\rangle=\meanz$ used in this work. This reconstruction includes a low-pass filter up to a scale of 2 arcminutes and has been additionally smoothed with a Gaussian filter with FWHM of 3.5~arcminutes. }
+    \label{fig:stamp}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.95\columnwidth]{fig3a.pdf}
+    \includegraphics[width=0.92\linewidth]{fig3b.pdf}
+    \caption{\textit{Top:} Halo model fit to the profile of the stacked lensing convergence, color-coded by $\Delta\chi^2=\chi^2-\chi^2_\mathrm{min}$. With only one free parameter in the model, the 1, 2, and 3$\sigma$ credible regions are limited by $\Delta\chi^2=$1, 4, and 9, respectively. The solid line shows the best-fit model, while the dashed and dot-dashed lines show the contributions from the 1-halo and 2-halo terms to it, respectively. Grey crosses show measurements of the curl (slightly offset horizontally for clarity), which is expected to be zero (see Appendix A). Error-bars correspond to the square root of the diagonal elements of the covariance matrix. The probability-to-exceed (PTE) the $\chi^2$ of our best-fit model is \fitpte. The PTE of the curl compared to a null signal is \curlpte.
+    \textit{Bottom:} The correlation coefficient matrix for the radial bins of the lensing measurement. The corresponding matrix for the curl measurement is similar. The large bin-bin correlations show that all the curl points fluctuating below zero is not unlikely.  }
+    \label{fig:profile}
+\end{figure}
+
+
+\section{Lensing reconstruction}
+
+
+We reconstruct the CMB lensing convergence $\kappa$ in regions centered on the locations of \madcows\ clusters. The lensing convergence is related to the line-of-sight integral $\phi$ of the underlying gravitational potential sourced by a cluster, and to the lensing deflection angle $\boldsymbol{\alpha}$ through $\nabla^2 \phi=\boldsymbol{\nabla}\cdot{\boldsymbol{\alpha}}=-2\kappa$. The convergence is related to the surface mass density $\Sigma$ through
+$\kappa=\Sigma/\Sigma_{\rm cr}$, where $\Sigma_{\rm cr}$ is a characteristic mass density for the formation of multiple images that depends on distances to the source and lens (see Appendix B). Since the convergence map is directly proportional to the surface mass density, it can be thought of as a mass map. Gravitational lensing of the CMB by clusters leads to a re-mapping of the temperature anisotropies  $T({\bf x}) = T_{\rm unlensed}({\bf x} + \boldsymbol{\alpha})$. In the 2D Fourier space of the temperature anisotropy image, this re-mapping corresponds to coupling between previously independent Fourier modes (say with wavenumbers $\ellb$ and $\ellb'$) that is proportional to the lensing convergence: $\langle T({\boldsymbol \ell})T({\boldsymbol \ell}')  \rangle \propto \kappa(\ellb+\ellb') $. This allows us to reconstruct the underlying convergence mode by mode by using a `quadratic estimator', i.e., a weighted sum over products of pairs of image modes \citep{astro-ph/0701276}, which in practice can be written as the divergence of the product of the large-scale CMB gradient and the small-scale CMB fluctuations (see Appendix A). The quadratic estimator reconstruction provides an unbiased estimate of the Fourier modes of the cluster mass map within a range of scales set by the band-limit of the CMB maps. Thus, the output reconstruction image $\hat{\kappa}({\bf x})$ is effectively filtered, and we forward model this filtering when fitting to theoretical expectations. The signal-to-noise ratio (SNR) for any given cluster is well below unity, and so our final measurements are  a weighted average of the mass maps and of the radial profile (azimuthal average) of the lensing convergence, where the weights are inversely proportional to the noise variance in the lensing convergence reconstruction. We estimate a weighted covariance matrix for the radial profile from the scatter among the profiles. Details of the reconstruction process and mitigation of astrophysical foregrounds are provided in Appendix \ref{app:details}. We show the resulting stacked CMB lensing convergence reconstruction in Fig. \ref{fig:stamp}.
+
+\section{Results}
+
+
+After averaging lensing convergence maps across all the clusters in our sample, we detect an excess relative to null within 8 arcminutes at \nullsigma $\sigma$ confidence. We estimate the mean mass of the sample by fitting the binned radial profile of the average mass map assuming the Navarro-Frenk-White \citep[NFW,][]{NFW} density profile model for the distribution of matter within galaxy clusters with a fixed relation between the profile shape (or `concentration' parameter) and the mass. 
+We account for the distribution of clusters of different masses across redshift and their clustering, and apply an approximate correction for selection effects in order to construct an ensemble average of the lensing signal. This `halo model' approach, detailed in Appendix \ref{app:model}, allows us to estimate the mean mass of the underlying sample from which the \madcows\ sample is drawn. 
+
+We show the model predictions for the filtered lensing signal in Fig.\ \ref{fig:profile}, color-coded by the excess $\chi^2$ with respect to the minimum $\chi^2$ obtained from our fit, corresponding to $\chi^2_\mathrm{min}=1.4$. Since our model has only one free parameter, the 1, 2, and 3$\sigma$ credible ranges are given by $\Delta\chi^2=1,4,$ and 9, respectively. 
+We calculate the probability-to-exceed $\chi^2_\mathrm{min}$ (PTE) by drawing one million random samples with mean zero and using the covariance of our measurements; we find a PTE of \fitpte, showing that the model is an adequate description of the data. The best-fit mean mass is $\langle M_{500c}\rangle =(\meanmass)\times10^{14}\,\Msun$, with a preference for our best-fit over zero mass at the \fitsigma $\sigma$ level.
+
+\section{Discussion}
+
+The clusters in our sample have a mean redshift of $\langle z\rangle=\meanz$, the highest-redshift, blindly-selected sample for which a gravitational lensing measurement has been obtained to date.
+Our results highlight the potential of both CMB lensing in general and ACT in particular to constrain the scaling relation between mass and other observables for high-redshift galaxy clusters.
+
+In Appendix B, we explore systematic uncertainties from cluster redshift errors, centering errors, and the concentration parameter of the NFW profile, which are all smaller than 30\% of our reported uncertainty. Since our measurement probes the overall lensing amplitude, the reported mass is also robust to assumptions about both the selection function and the scaling relation between mass and richness, which conversely we are not able to constrain.
+
+Because we stack the lensing maps around all \madcows\ clusters within the ACT footprint with a richness larger than 20, our measurement is representative of the full \madcows\ sample above this cut. Targeted observations of the tSZ effect (which scales steeply with cluster mass as $\sim M^{\frac{5}{3}}$) of \madcows\ sub-samples by \cite{gonzalez19,madcows_aca,madcows_mustang} have naturally picked preferentially the most luminous objects, and thus the mean richness of our sample, $\langle\observable\rangle=32$, is lower than that probed in those works. The mean mass we estimate is consistent with the scaling relations reported in those works, which however have large uncertainties and are susceptible to additional systematic effects associated with an uncertain selection function.
+
+While looking for galaxy overdensities is an efficient means of finding galaxy clusters, characterizing the selection effects that these techniques are subject to is a challenging endeavor. No estimate of the selection function is available for \madcows, which precludes the use of this sample for cosmological parameter inference. Future CMB lensing measurements of well-defined cluster samples at high redshift will yield tight constraints on the parameters that govern the growth of structure. \\
+
+
+{\it{Acknowledgements:}} We thank Peter Melchior for helpful discussions.
+% Software
+Software used for this analysis includes healpy~\citep{Healpix1}, HEALPix~\citep{Healpix2}, and Astropy~\citep{astropy:2013, astropy:2018}.
+% Funding
+Research at Perimeter Institute is supported in part by the Government of Canada through the Department of Innovation, Science and Industry Canada and by the Province of Ontario through the Ministry of Colleges and Universities. CS acknowledges support from the Agencia Nacional de Investigaci\'on y Desarrollo (ANID) through FONDECYT Iniciaci\'on grant no.~11191125. NB acknowledges support from NSF grant AST-1910021. EC acknowledges support from the STFC Ernest Rutherford Fellowship ST/M004856/2 and STFC Consolidated Grant ST/S00033X/1, and from the Horizon 2020 ERC Starting Grant (Grant agreement No 849169).
+JD is supported through NSF grant AST-1814971. R.D. thanks CONICYT for grant BASAL CATA AFB-170002. DH, AM, and NS acknowledge support from NSF grant numbers AST-1513618 and AST-1907657.
+ MHi acknowledges support from the National Research Foundation.
+JPH acknowledges funding for SZ cluster studies from NSF grant number AST-1615657. KM acknowledges support from the National Research Foundation of South Africa. 
+% ACT
+This work was supported by the U.S. National Science Foundation through awards AST-1440226, AST0965625 and AST-0408698 for the ACT project, as well as awards PHY-1214379 and PHY-0855887. Funding was also provided by Princeton University, the University of Pennsylvania, and a Canada Foundation for Innovation (CFI) award to UBC. ACT operates in the Parque Astron\'{o}mico Atacama in northern Chile under the auspices of the Comisi\'{o}n Nacional de Investigaci\'{o}n Cient\'{i}fica y Tecnol\'{o}gica de Chile (CONICYT). Computations were performed on the GPC and \emph{Niagara} supercomputers at the SciNet HPC Consortium. SciNet is funded by the CFI under the auspices of Compute Canada, the Government of Ontario, the Ontario Research Fund
+-- Research Excellence; and the University of Toronto. The development of multichroic detectors and lenses was supported by NASA grants NNX13AE56G and NNX14AB58G.   Colleagues at AstroNorte and RadioSky provide logistical support and keep operations in Chile running smoothly. We also thank the Mishrahi Fund and the Wilkinson Fund for their generous support of the project. This document was prepared by Atacama Cosmology Telescope using the resources of the Fermi National Accelerator Laboratory (Fermilab), a U.S. Department of Energy, Office of Science, HEP User Facility. Fermilab is managed by Fermi Research Alliance, LLC (FRA), acting under Contract No. DE-AC02-07CH11359.
+
+\bibliography{msm}
+\bibliographystyle{aasjournal}
+
+
+\appendix
+
+\section{Method details and systematics tests}
+\label{app:details}
+
+The quadratic estimator for CMB lensing reconstruction can be recast as the divergence of the product of the small-scale CMB and the large-scale CMB gradient:
+
+\begin{equation}
+\label{Eq:kappaEst}
+\hat{\kappa}(\boldsymbol{\theta}) =-\mathcal{F}^{-1}\left\{A^{TT}(\bL) \mathcal{F}\left\{ \rmn{Re}\left[\nabla \cdot \left[\boldsymbol{\nabla}T_g(\boldsymbol{\theta}) T_h(\boldsymbol{\theta}) \right]\right]\right\}\right\}
+\end{equation}
+%
+where $\mathcal{F}$ and $\mathcal{F}^{-1}$ denote 2d Fourier and inverse Fourier transforms respectively. Our analysis applies this estimator locally to cut-outs of CMB data centered on each cluster location that are 128 arcminutes wide  with pixels of width 0.5 arcminutes. The large width relative to the typical arcminute size of clusters allows us to estimate the large-scale gradient.
+
+
+Following \cite{astro-ph/0701276}, we use a low-pass (top-hat) filtered temperature anisotropy gradient $\boldsymbol{\nabla}T_g$ with a maximum CMB multipole of $\ell_G=2000$ to mitigate bias in massive clusters as well as to reduce contamination from foregrounds. Furthermore, following \cite{1802.08230}, for the gradient map $\boldsymbol{\nabla}T_g$, we use a CMB map from which tSZ has been explicitly deprojected using multi-frequency information (the \Planck\ PR3 SMICA tSZ-deprojected), so as to null a large tSZ-induced bias. For the high-resolution map $T_h$, we use an internal linear combination (ILC) of the postage stamp cut-outs from the 98 GHz and 150 GHz 2018 co-adds of \Planck\ and ACT from \cite{2007.07290}, where the high-resolution ACT data dominates the information content. While the gradient cleaning for $\boldsymbol{\nabla}T_g$ nulls the tSZ bias, a large amount of variance can be induced by the presence of large tSZ decrements in $T_h$. To reduce this, following \cite{1905.07943}, prior to the ILC we subtract a best estimate of the tSZ decrement from the $\sim 4000$ SZ clusters detected in the co-add \citep{Hilton2020} since some of these clusters either appear in our sample or may appear in the postage stamps that we perform our reconstruction on.  The weights for the ILC are designed to minimize the power spectrum of the combination and are determined after fitting the total 1d power spectrum of each single-frequency stamp to a simple two parameter model that captures both an atmospheric component as well as white noise. We impose a maximum multipole cut of $\ell=6000$ on the high-resolution map.  Both maps are inverse-variance filtered as in \cite{astro-ph/0701276}. For both the gradient and high-resolution map, we do not use scales below $\ell=200$ due to the size of our cut-outs.
+The reconstruction is normalized with an analytic expression $A^{TT}(\bL)$ \citep{astro-ph/0701276} that depends on the filters we apply. The final reconstruction is filtered to ensure it only contains modes $200 < L < 5000$, and this filter is subsequently propagated in our theoretical model when fitting the profile. 
+
+Prior to reconstruction, the gradient and high-resolution maps are multiplied by a tapering cosine window (of approximate width 18 arcminutes) to enforce periodicity required by Fourier transforms. The presence of such a window (as well as other sources of anisotropy such as inhomogeneity of instrument noise) induces a spurious lensing signal referred to as the `mean-field'. We estimate the mean-field by repeating the above stacking procedure on a large number of random locations ($\sim 300$ times the number of clusters in our sample) and subtract this from our main cluster stack. The mean-field profile is roughly constant as a function of distance from the center of the stack and is 20\% of the measurement in the first bin, 50\% in the second bin and larger than the measurement in subsequent bins.
+
+We perform a number of systematics tests to ensure the robustness of our detection. This includes a curl null test, where the divergence in Eq. \ref{Eq:kappaEst} is replaced by the curl (and normalized appropriately), shown in Fig. \ref{fig:profile}. With this test, we obtain a measurement that is consistent with null (PTE of \curlpte, corresponding to consistency with null at the $\curlsigma\sigma$ level). As shown in \cite{1802.08230}, one needs correlated contaminants in the gradient and high-resolution maps of the quadratic estimator in order to be biased by these contaminants. Therefore, to test the possibility that dust emission might be biasing our measurement, we stack the \Planck\ PR3 SMICA tSZ-deprojected map (used for the gradient) at the location of all \tnclusters MaDCoWS clusters with photometric redshifts (not just the \nclusters that fall in the ACT footprint used in this analysis). We detect no residual in this stack and thus conclude that dust contamination in the lensing reconstruction itself is unlikely. The presence of contaminants in the high-resolution map will contribute noise, which is captured in our empirically determined covariance matrix.
+
+
+\section{Mass Modeling}\label{app:model}
+
+In order to infer the mean mass of the sample, we model the CMB lensing signal by assuming that all mass is contained within spherical halos, and that these halos cluster together \citep[i.e., using the `halo model';][]{peacock00,seljak00}. We adopt the best-fit flat $\Lambda$CDM cosmology from \cite{Planck2015Cosmo}, with present-day matter density parameter $\Omega_\mathrm{m}=0.307$ and a Hubble constant $H_0=67.7\,\mathrm{km\,s^{-1}Mpc^{-1}}$, also adopted by \cite{gonzalez19}.
+
+Within the halo model formalism, the lensing signal can be decomposed as
+\begin{equation}\label{eq:kappa_tot}
+    \kappa(\theta) = 
+        \kappa_\mathrm{1h}(\theta) + \kappa_\mathrm{2h}(\theta)
+\end{equation}
+where the subscripts 1h and 2h represent the 1-halo (due to each halo) and 2-halo (due to halo clustering) contributions. We model each component as follows.
+
+For the 1-halo term, we use a Navarro-Frenk-White (NFW) density profile \citep{NFW}. We use a mass definition, $M_{500c}$, corresponding to the mass within an overdensity of 500 times the critical density, $\rho_\mathrm{c}(z)=3H^2(z)/8\pi G$.
+We model the concentration, $c_{500c}\equiv r_{500c}/r_\mathrm{s}$ (where $r_\mathrm{s}$ is the scale radius and $r_{500c}$ is the radius containing $M_{500c}$), using the relation between concentration and mass from \cite{diemer19}.\footnote{Calculated using \texttt{colossus} \citep[\url{https://bdiemer.bitbucket.io/colossus/}]{colossus}.} For a lens of mass $m$ and redshift $z$, the convergence is related to the mass surface density, $\Sigma(m,z)$, through
+\begin{equation}\label{eq:kappa}
+    \kappa(m,z)=\frac{\Sigma(m,z)}{\Sigma_\mathrm{cr}(z)}
+    \equiv
+    \left(
+        \frac{c^2}{4\pi G}\frac{D_\mathrm{s}}{D_\mathrm{l}(z)D_\mathrm{ls}(z)}
+    \right)^{-1}
+    \Sigma(m,z),
+\end{equation}
+where $D_\mathrm{s}$, $D_\mathrm{l}$, and $D_\mathrm{ls}$ are the angular diameter distances to the last scattering surface, to the cluster, and between the cluster and the last scattering surface, respectively.
+The expression for the NFW surface density profile is given in \cite{wright00}.
+
+
+The 2-halo term arises due to the large-scale galaxy-matter power spectrum,
+\begin{equation}\label{eq:Pgm_2h}
+    P_\mathrm{gm}^\mathrm{2h}(k|m,z) = b(m,z)P_\mathrm{m}(k|z)
+\end{equation}
+where $P_\mathrm{m}(k|z)$ is the linear matter power spectrum and $b(m,z)$ is the halo bias as calculated by \cite{tinker10}. Note that all calculations of the 2-halo term are performed in comoving coordinates. The power spectrum is the Fourier transform of the correlation function,
+\begin{equation}\label{eq:xi}
+    \xi_\mathrm{gm}(r|m,z) = 
+    \frac1{2\pi^2}\int_0^\infty \frac{\sin kr}{kr}k^2\,dk\, P_\mathrm{gm}^\mathrm{2h}
+\end{equation}
+from which the surface density can be calculated as
+\begin{equation}\label{eq:sigma}
+    \Sigma_\mathrm{2h}(R|m,z) = 2\bar\rho_\mathrm{m}R
+    \int_0^1\frac{dx}{x^2\sqrt{1-x^2}}\,\xi_\mathrm{gm}(R/x|m,z)
+\end{equation}
+where $\bar\rho_\mathrm{m}$ is the (time-independent) comoving mean matter density. The 2-halo term in Eq. \ref{eq:kappa_tot} is then
+\begin{equation}
+    \kappa_\mathrm{2h}(\theta|m,z) = (1+z)^2
+        \frac{\Sigma_\mathrm{2h}(\theta|m,z)}{\Sigma_\mathrm{c}}
+\end{equation}
+where the additional $(1+z)^2$ compared to Eq. \ref{eq:kappa} is due to our use of comoving coordinates in the 2-halo term calculation \citep[see, e.g., ][]{dvornik18}.
+We then filter both the 1h and 2h components with the Fourier-space filter described in Appendix \ref{app:details} to produce a prediction for $\hat\kappa(\theta|m,z)$.
+
+In reality, our measurement is the mean over clusters covering a range in masses and redshifts. The halo mass function provides a prediction for the distribution of clusters in mass and redshift, which can be linked to the observable used to construct the sample (namely, richness, $\observable$) through a mass-observable relation. However, like for any other cluster sample, due to the selection algorithm (in this case, red sequence overdensities), \madcows\ is a biased subsample of the underlying cluster population. We therefore follow previous galaxy-galaxy- and cluster-lensing studies \citep[e.g.,][]{vdbosch13,viola15,dvornik18,miyatake19} and model the measured lensing signal as
+\begin{equation}\label{eq:kappa_avg}
+% \begin{split}
+    \hat\kappa(\theta) = \frac1{\bar N}\int dz \,\frac{dN_\mathrm{cl}}{dz}\int dm \,\frac{d^2n_\mathrm{h}}{dm\,dz} %\\
+    \times
+    \int d\observable \mathcal{P}(\ln\observable|\ln m,z)\mathcal{S}(\observable,z)\,\hat\kappa(\theta|m,z),
+% \end{split}
+\end{equation}
+Here $\frac{dN_\mathrm{cl}}{dz}$ is the observed redshift distribution of the clusters; $\frac{d^2n_\mathrm{h}}{dm\,dz}$ is the halo mass function from \cite{tinker10}\footnote{We use the Core Cosmology Library \citep[\url{https://ccl.readthedocs.io/en/latest/}]{CCL} to calculate the halo mass function, the halo bias, and the matter power spectrum.}, $\mathcal{P}(\ln\observable|\ln m,z)$ is the conditional probability of richness given cluster mass (defined below), and $\bar N$ is the expected number of clusters, which differs from the halo mass function due to the mass-observable relation (see below) and selection function, $\mathcal{S}(\observable,z)$, which is given by
+\begin{equation}\label{eq:nbar}
+% \begin{split}
+    \bar N = \int dz \,\frac{dN_\mathrm{cl}}{dz}\int dm \,\frac{d^2n_\mathrm{h}}{dm\,dz} %\\
+    \times
+    \int d\observable \mathcal{P}(\ln\observable|\ln m,z)\mathcal{S}(\observable,z).
+% \end{split}
+\end{equation}
+%
+Consequently, in this framework mean values refer to the mean of the underlying cluster population and are calculated in analogy to eq.~\ref{eq:kappa_avg} as
+\begin{equation}\label{eq:avg}
+% \begin{split}
+    \langle X\rangle = \frac1{\bar N}\int dz \, \frac{dN_\mathrm{cl}}{dz}\int dm \,\frac{d^2n_\mathrm{h}}{dm\,dz} %\\
+    \times
+    \int d\observable \mathcal{P}(\ln\observable|\ln m,z)\mathcal{S}(\observable,z) \,X.
+% \end{split}
+\end{equation}
+%
+For simplicity, we assume that the \madcows\ sample includes all clusters with richness larger than 20 (and we have discarded all clusters with lower richness), such that
+\begin{equation}
+    \mathcal{S}(\observable,z) = \mathcal{S}(\observable) = \Theta(\observable-20),
+\end{equation}
+where $\Theta$ is the Heaviside step function. 
+%
+In addition, we limit the redshift integral to the range $z\in[0.7,1.8]$. (Note that by using the observed redshift distribution, $\frac{dN_\mathrm{cl}}{dz}$, instead of the comoving volume element $dV/dz$ in Eq.\ \ref{eq:kappa_avg}, we are effectively introducing an additional redshift component to the selection function; this choice has no impact on our results.)
+
+Additionally, we assume a linear relation between cluster richness, $\observable$, and cluster mass, $M_{500c}\equiv m$:
+\begin{equation}\label{eq:scaling}
+\ln \observable = \beta + \ln (m/10^{14}\,\Msun) \equiv \beta + \ln\mu
+\end{equation}
+and assume a log-normal conditional probability of $\observable$ given cluster mass,
+\begin{equation}
+    \mathcal{P}(\ln\observable|\ln m,z) = \frac1{\sqrt{2\pi}\sigma}
+    \exp\left[-\frac{(\ln\observable-\ln\mu-\beta)^2}{2\sigma^2}\right].
+\end{equation}
+We assume a scatter on the mass-observable relation $\sigma\equiv\sigma_{\ln\observable|\ln m}=0.5$, typical of the scatter of different richness definitions \citep{rozo14,murata19}. The slope $\beta$ is the only free parameter in this model. While its posterior value depends on our assumptions about the selection function and the scatter above, the mean mass of the sample (calculated following eq.\ \ref{eq:avg}) is robust to these changes as it directly quantifies the amplitude of the lensing signal.
+
+We estimate the best-fit parameters by varying the slope $\beta$ and minimizing
+\begin{equation}
+    \chi^2 = \left(\mathbf{d-m}\right)^T\cdot\mathbf{C}^{-1}\cdot\left(\mathbf{d-m}\right)
+\end{equation}
+where $\mathbf{d}$ and $\mathbf{m}$ are the vectors of measured radial profile bins and the model expectations for them, respectively, and $\mathbf{C}$ is the covariance matrix of the measurement. We use five bins in our fit that encompass a region within 8 arcminutes of the center of the stamp.
+
+In order to demonstrate the contribution from each term in the model described above, we first fit our measurements with a single NFW profile at $z=1.1$, including only the 1-halo contribution, with the mass as the sole free parameter. This results in a best-fit mass $\langle M_{500c}\rangle=\left(2.1\pm0.5\right)\times10^{14}\,\Msun$. We then add the two-halo term, assuming all clusters have the same mass and are located at the same mean redshift, and find $\langle M_{500c}\rangle=\left(1.7\pm0.4\right)\times10^{14}\,\Msun$.
+%
+Finally, we implement the full model as described above. We find $\beta=2.4\pm0.3$, which translates to a population-weighted mean cluster mass $\langle M_{500c}\rangle = \left(\meanmass\right)\times10^{14}\,\Msun$, where uncertainties correspond to $\Delta\chi^2=1$ (i.e., 68.3\% credible range). This is the main result of this paper.
+
+For reference, we calculate the mass $M_{200c}$ within an overdensity of 200 times the critical density for each point in the $(M_{500c},z)$ grid and perform the integral given by Eq.\ \ref{eq:avg} over the appropriate halo mass function, and find $\langle M_{200c}\rangle=(2.5\pm0.6)\times10^{14}\,\Msun$.
+
+As discussed above, the best-fit $\beta$ depends strongly on our modeling assumptions and should not be over-interpreted, but the mean mass changes at most by 5\% regardless of our assumptions about the selection function and scaling relation. Specifically, we have explored scaling relation slopes of 0.5 and 2.0 (as opposed to the fiducial value of 1.0), as well as selection functions given both by step functions and error functions with mid-points in the range $\lambda=[10,30]$, and in all cases find mean masses within 5\% of the reported value. The largest shift in mass is introduced by modifying the mass-concentration relation (for reference, the population-weighted mean concentration is $c_{500c}=2.5$): increasing (decreasing) the concentration by 20\%---which brackets most mass-concentration relations in the literature---increases (decreases) the mean mass by 10\%, well within the uncertainties. Redshift uncertainties also do not change our results significantly: applying a systematic shift $\Delta z=\pm0.1$ (slighly larger than the 1$\sigma$ scatter of photometric redshifts compared to spectroscopic redshifts, \cite{gonzalez19}) only changes the mean mass by less than 3\%. Assuming that 5\% of the clusters have photometric redshifts that are wrong by $\Delta z=+0.2$ ($3\sigma$ outliers, all in the same direction) has a similar impact. 
+
+Our final assessment of modeling systematics regards miscentering.
+The \madcows\ algorithm defines the cluster center as the location of the peak amplitude in a smoothed galaxy density map, which can potentially be significantly offset from the center of mass \citep{george12,viola15} and results in a reduced central lensing amplitude.
+However, the physical resolution of our measurements is roughly 1 Mpc, which greatly reduces the impact from miscentering, and we choose not to account for it in our analysis. To test the impact of miscentering, we implement the distribution found by \cite{johnston07} for optically-selected clusters, exploring typical offsets between the assumed and true centers of up to 0.4 Mpc (roughly $2r_\mathrm{s}$); the change in mass is at most 5\%.
+
+
+
+\end{document}

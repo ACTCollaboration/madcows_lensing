@@ -1,0 +1,10 @@
+*~
+*.aux
+*.log
+.ipynb_checkpoints
+main.pdf
+*.bbl
+*.blg
+*.out
+texprlcount.pl
+data/
